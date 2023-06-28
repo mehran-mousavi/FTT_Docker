@@ -1,15 +1,6 @@
 # Use a base image
 FROM nimlang/nim:latest
 
-# Set the working directory
-WORKDIR /app
-
-# Copy the script file to the container
-COPY script.sh .
-
-# Set the script as executable
-RUN chmod +x script.sh
-
 # Update the package repository and install required packages
 RUN apt-get update -y && \
     apt-get install -y unzip wget sudo
