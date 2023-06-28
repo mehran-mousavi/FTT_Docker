@@ -20,5 +20,10 @@ RUN wget "https://github.com/radkesvat/FakeTlsTunnel/releases/download/V11.1/v11
     chmod +x FTT && \
     rm v11.1_linux_amd64.zip
 
-# Set the entrypoint and default command
-ENTRYPOINT ["./script.sh"]
+
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+
+USER docker
+
+# Run the FTT
+CMD ["./FTT --server --lport:443 --toip:upload.airpersian.com --toport:443 --sni:bing.com --password:123xxx"]
